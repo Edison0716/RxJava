@@ -29,6 +29,7 @@ public final class ObservableSubscribeOn<T> extends AbstractObservableWithUpstre
 
     @Override
     public void subscribeActual(final Observer<? super T> observer) {
+        //这也就是为什么会多次调用subscribeOn 只调用最后一次的线程切换
         final SubscribeOnObserver<T> parent = new SubscribeOnObserver<T>(observer);
 
         observer.onSubscribe(parent);
